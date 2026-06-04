@@ -5,11 +5,11 @@ from sqlalchemy.orm import Session
 from src.config.db import SessionLocal
 
 def get_db():
-    db = SessionLocal()
+    db = SessionLocal() # abre sessão
     try:
-        yield db
+        yield db # injeta no endpoint
         
     finally:
-        db.close()
+        db.close() # sempre fecha, com ou sem erro
         
 SessionDep = Annotated[Session, Depends(get_db)]
